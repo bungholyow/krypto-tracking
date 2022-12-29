@@ -100,12 +100,12 @@ const CoinPage = () => {
         </Typography>
         <div className={classes.marketData}>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Peringkat :
+            <Typography variant="h7" className={classes.heading}>
+              Peringkat:
             </Typography>
             &nbsp; &nbsp;
             <Typography
-              variant="h5"
+              variant="h7"
               style={{
                 fontFamily: "Montserrat",
               }}
@@ -115,12 +115,12 @@ const CoinPage = () => {
           </span>
 
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Harga Sekarang :
+            <Typography variant="h7" className={classes.heading}>
+              Harga Sekarang:
             </Typography>
             &nbsp; &nbsp;
             <Typography
-              variant="h5"
+              variant="h7"
               style={{
                 fontFamily: "Montserrat",
               }}
@@ -132,12 +132,12 @@ const CoinPage = () => {
             </Typography>
           </span>
           <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Kap Pasar :
+            <Typography variant="h7" className={classes.heading}>
+              Kap Pasar:
             </Typography>
             &nbsp; &nbsp;
             <Typography
-              variant="h5"
+              variant="h7"
               style={{
                 fontFamily: "Montserrat",
               }}

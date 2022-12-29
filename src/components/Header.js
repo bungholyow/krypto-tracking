@@ -12,6 +12,7 @@ import {
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
+import AuthModal from "./Autentikasi/AuthModal";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -65,6 +66,7 @@ const Header = () => {
               <MenuItem value={"IDR"}>IDR</MenuItem>
               <MenuItem value={"USD"}>USD</MenuItem>
             </Select>
+            <AuthModal />
           </Toolbar>
         </Container>
       </AppBar>

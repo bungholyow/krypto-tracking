@@ -15,12 +15,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
-import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { CoinList } from "../config/api";
 import { CryptoState } from "../CryptoContext";
 
 export function numberWithCommas(x) {
@@ -28,19 +26,10 @@ export function numberWithCommas(x) {
 }
 
 const TabelKoin = () => {
-  const [koin, setKoin] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
-  const { currency, symbol } = CryptoState();
-
-  const fetchCoins = async () => {
-    const { data } = await axios.get(CoinList(currency));
-
-    setKoin(data);
-    setLoading(false);
-  };
+  const { currency, symbol, koin, loading, fetchCoins } = CryptoState();
 
   useEffect(() => {
     fetchCoins();

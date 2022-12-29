@@ -90,7 +90,7 @@ const TabelKoin = () => {
           variant="h4"
           style={{ margin: 18, fontFamily: "Montserrat" }}
         >
-          Harga Crypto berdasarkan Market Cap
+          Harga Crypto berdasarkan Kapitalisasi Pasar
         </Typography>
         <TextField
           label="Cari Crypto ..."
@@ -105,19 +105,21 @@ const TabelKoin = () => {
             <Table aria-label="simple table">
               <TableHead style={{ backgroundColor: "#EEBC1D" }}>
                 <TableRow>
-                  {["Koin", "Harga", "24h Change", "Market Cap"].map((head) => (
-                    <TableCell
-                      style={{
-                        color: "black",
-                        fontWeight: "700",
-                        fontFamily: "Montserrat",
-                      }}
-                      key={head}
-                      align={head === "Koin" ? "" : "right"}
-                    >
-                      {head}
-                    </TableCell>
-                  ))}
+                  {["koin", "harga", "perubahan/24h", "kap pasar"].map(
+                    (head) => (
+                      <TableCell
+                        style={{
+                          color: "black",
+                          fontWeight: "700",
+                          fontFamily: "Montserrat",
+                        }}
+                        key={head}
+                        align={head === "koin" ? "" : "right"}
+                      >
+                        {head}
+                      </TableCell>
+                    )
+                  )}
                 </TableRow>
               </TableHead>
 

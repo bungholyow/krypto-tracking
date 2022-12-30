@@ -15,7 +15,7 @@ const SignUp = ({ handleClose }) => {
     if (password !== confirmPassword) {
       setAlert({
         open: true,
-        message: "Passwords do not match",
+        message: "Password tidak sama",
         type: "error",
       });
       return;
@@ -29,7 +29,7 @@ const SignUp = ({ handleClose }) => {
       );
       setAlert({
         open: true,
-        message: `Sign Up Successful. Welcome ${result.user.email}`,
+        message: `Daftar berhasil. Selamat Datang ${result.user.email}`,
         type: "success",
       });
 
@@ -56,14 +56,14 @@ const SignUp = ({ handleClose }) => {
       <TextField
         variant="outlined"
         type="email"
-        label="Enter Email"
+        label="Masukkan Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         fullWidth
       />
       <TextField
         variant="outlined"
-        label="Enter Password"
+        label="Masukkan Password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -71,7 +71,7 @@ const SignUp = ({ handleClose }) => {
       />
       <TextField
         variant="outlined"
-        label="Confirm Password"
+        label="Konfirmasi Password"
         type="password"
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
@@ -83,7 +83,7 @@ const SignUp = ({ handleClose }) => {
         style={{ backgroundColor: "#EEBC1D" }}
         onClick={handleSubmit}
       >
-        Sign Up
+        Daftar
       </Button>
     </Box>
   );

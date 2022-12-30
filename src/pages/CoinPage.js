@@ -1,4 +1,9 @@
-import { LinearProgress, makeStyles, Typography } from "@material-ui/core";
+import {
+  Button,
+  LinearProgress,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
@@ -10,17 +15,67 @@ import ReactHtmlParser from "react-html-parser";
 
 import InfoKoin from "../components/InfoKoin";
 import { numberWithCommas } from "../components/TabelKoin";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 const CoinPage = () => {
   const { id } = useParams();
   const [koin, setKoin] = useState();
 
-  const { currency, symbol } = CryptoState();
+  const { currency, symbol, user, setAlert, watchlist } = CryptoState();
 
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
 
     setKoin(data);
+  };
+
+  const inWatchlist = watchlist.includes(koin?.id);
+
+  const addToWatchlist = async () => {
+    const coinRef = doc(db, "watchlist", user.uid);
+    try {
+      await setDoc(
+        coinRef,
+        { coins: watchlist ? [...watchlist, koin?.id] : [koin?.id] },
+        { merge: true }
+      );
+
+      setAlert({
+        open: true,
+        message: `${koin.name} ditambah ke Watchlist !`,
+        type: "success",
+      });
+    } catch (error) {
+      setAlert({
+        open: true,
+        message: error.message,
+        type: "error",
+      });
+    }
+  };
+
+  const removeFromWatchlist = async () => {
+    const coinRef = doc(db, "watchlist", user.uid);
+    try {
+      await setDoc(
+        coinRef,
+        { coins: watchlist.filter((wish) => wish !== koin?.id) },
+        { merge: true }
+      );
+
+      setAlert({
+        open: true,
+        message: `${koin.name} dihapus dari Watchlist !`,
+        type: "success",
+      });
+    } catch (error) {
+      setAlert({
+        open: true,
+        message: error.message,
+        type: "error",
+      });
+    }
   };
 
   useEffect(() => {
@@ -92,10 +147,10 @@ const CoinPage = () => {
           height="200"
           style={{ marginBottom: 20 }}
         />
-        <Typography variant="h3" className={classes.heading}>
+        <Typography variant="h4" className={classes.heading}>
           {koin?.name}
         </Typography>
-        <Typography variant="subtitle1" className={classes.description}>
+        <Typography variant="subtitle2" className={classes.description}>
           {ReactHtmlParser(koin?.description.en.split(". ")[0])}.
         </Typography>
         <div className={classes.marketData}>
@@ -148,9 +203,23 @@ const CoinPage = () => {
                   .toString()
                   .slice(0, -6)
               )}
-              M
             </Typography>
           </span>
+
+          {user && (
+            <Button
+              variant="outlined"
+              style={{
+                width: "100%",
+
+                height: 40,
+                backgroundColor: inWatchlist ? "#ff0000" : "#EEBC1D",
+              }}
+              onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
+            >
+              {inWatchlist ? "Hapus dari Watchlist" : "Tambah ke Watchlist"}
+            </Button>
+          )}
         </div>
       </div>
       <InfoKoin coin={koin} />

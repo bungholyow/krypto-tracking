@@ -14,7 +14,7 @@ const Login = ({ handleClose }) => {
     if (!email || !password) {
       setAlert({
         open: true,
-        message: "Please fill all the Fields",
+        message: "semua kolom harus diisi",
         type: "error",
       });
       return;
@@ -24,7 +24,7 @@ const Login = ({ handleClose }) => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       setAlert({
         open: true,
-        message: `Sign Up Successful. Welcome ${result.user.email}`,
+        message: `Login Berhasil. Selamat Datang ${result.user.email}`,
         type: "success",
       });
 
@@ -51,14 +51,14 @@ const Login = ({ handleClose }) => {
       <TextField
         variant="outlined"
         type="email"
-        label="Enter Email"
+        label="Masukkan Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         fullWidth
       />
       <TextField
         variant="outlined"
-        label="Enter Password"
+        label="Masukkan Password"
         type="password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}

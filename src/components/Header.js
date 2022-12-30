@@ -13,6 +13,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 import AuthModal from "./Autentikasi/AuthModal";
+import UserSidebar from "./Autentikasi/UserSidebar";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -29,7 +30,7 @@ const Header = () => {
 
   const history = useHistory();
 
-  const { currency, setCurrency } = CryptoState();
+  const { currency, setCurrency, user } = CryptoState();
 
   const darkTheme = createTheme({
     palette: {
@@ -66,7 +67,7 @@ const Header = () => {
               <MenuItem value={"IDR"}>IDR</MenuItem>
               <MenuItem value={"USD"}>USD</MenuItem>
             </Select>
-            <AuthModal />
+            {user ? <UserSidebar /> : <AuthModal />}
           </Toolbar>
         </Container>
       </AppBar>

@@ -61,7 +61,7 @@ export default function AuthModal() {
       .then((res) => {
         setAlert({
           open: true,
-          message: `Sign Up Successful. Welcome ${res.user.email}`,
+          message: `Login Berhasil. Selamat Datang ${res.user.email}`,
           type: "success",
         });
 
@@ -119,14 +119,15 @@ export default function AuthModal() {
                 style={{ borderRadius: 10 }}
               >
                 <Tab label="Login" />
-                <Tab label="Sign Up" />
+                <Tab label="Daftar" />
               </Tabs>
             </AppBar>
             {value === 0 && <Login handleClose={handleClose} />}
             {value === 1 && <Signup handleClose={handleClose} />}
             <Box className={classes.google}>
-              <span>OR</span>
+              <span>Atau</span>
               <GoogleButton
+                label="Masuk dengan Google"
                 style={{ width: "100%", outline: "none" }}
                 onClick={signInWithGoogle}
               />

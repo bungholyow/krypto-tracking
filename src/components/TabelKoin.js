@@ -72,6 +72,10 @@ const TabelKoin = () => {
     );
   };
 
+  // if (Math.random() > 0.5) {
+  //   return new Error("ngetes error boundary...");
+  // }
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Container style={{ textAlign: "center" }}>
